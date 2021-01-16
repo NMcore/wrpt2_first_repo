@@ -1,1 +1,133 @@
-Hello World
+<style>
+
+
+.catdescription {
+  max-width: 1000px;
+  margin: .1rem auto;
+  
+  .catblock {
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 4rem;
+    box-shadow: 0 1px 6px rgba(#613b1f, 0.2);
+    background: white;
+  }
+  
+  .catcontent {
+    font-family: "Lucida Bright", Georgia, serif;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    margin-bottom: 1rem;
+    
+    h2 {
+      margin: 0.5rem 0;
+    }
+  }
+  
+  .js-show-more {
+      appearance: none;
+      background: white;
+      color: #2779bd;
+      display: inline-flex;
+      align-items: center;
+      height: 26px;
+      text-decoration: none;
+      line-height: 26px;
+      padding: 0 14px;
+      font-size: 14px;
+      border-radius: 3px;
+      border: 1px solid #2779bd;
+      
+      &:hover {
+        background: rgba(#2779bd, 0.1);
+      }
+    }
+  }
+  
+  .excerpt-hidden {
+    height: 6.5rem;
+    overflow: hidden;
+    position: relative;
+    background: -webkit-linear-gradient(#000, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+  }
+  
+  .excerpt-visible {
+    height: auto;
+    overflow: auto;
+  }
+
+</style>    
+<div class="catdescription">
+    <div class="catblock">
+      <div class="catcontent">
+        <p class="js-excerpt excerpt-hidden">
+            <br/><b>Bike parts and infomartion:</b><br/>
+            The bike parts and maintenance collection at L9 Sports makes taking care of your bike a breeze. Browse our collection for the best bike repair tools, shop supplies and more to keep your machine on the road (or off it) and in tip-top shape.
+            <br/>
+            <br/><b>Beyond Basic Bike Maintenance Supplies</b><br/>
+            Go beyond basic bike parts and maintenance with our inventory of supplies for serious bikers. Find sealant, valves and more for tubeless tires alongside shop supplies like brake fluid, tire levelers and spoke rulers. Take charge of your ride’s performance with bike repair stands and racks that make advanced or basic bike maintenance a breeze. From air shaft replacements to disc brake pads, cleaner components to high-quality lube and grease options, our collection delivers the stuff you need to get back to shredding the trails and burning up the road.
+            <br/><br/><b>Maintaining the Best Prices and Service</b><br/>
+            L9 Sports is committed to bringing you the best prices on all your bike’s parts and maintenance needs. Superior customer service and an inventory of the brand names you trust are priorities for us, so your satisfaction with your L9 Sports purchases is always guaranteed. All qualifying orders ship free, and our team of avid bikers are available by phone, email or live online chat to answer questions and point you toward the best bike tools for the job. 
+      </div>
+      <a role="button" href="#" class="js-show-more"style="     
+      appearance: none;
+      background: white;
+      color: #5f809a;
+      display: inline-flex;
+      align-items: center;
+      height: 26px;
+      text-decoration: none;
+      line-height: 26px;
+      padding: 0 14px;
+      font-size: 14px;
+      border-radius: 3px;
+      border: 1px solid #5f809a;">Show more</a>
+    </div>
+  <script>
+
+const Utils = {
+  
+  addClass: function(element, theClass) {
+    element.classList.add(theClass);
+  },
+  
+  removeClass: function(element, theClass) {
+    element.classList.remove(theClass);
+  },
+  
+  showMore: function(element, excerpt) {
+    element.addEventListener("click", event => {
+      const linkText = event.target.textContent.toLowerCase();
+      event.preventDefault();
+      
+      console.log(this);
+      if (linkText == "show more") {
+        element.textContent = "Show less";
+        this.removeClass(excerpt, "excerpt-hidden");
+        this.addClass(excerpt, "excerpt-visible");
+      } else {
+        element.textContent = "Show more";
+        this.removeClass(excerpt, "excerpt-visible");
+        this.addClass(excerpt, "excerpt-hidden");
+      }
+    });
+  } 
+};
+
+const ExcerptWidget = {
+  showMore: function(showMoreLinksTarget, excerptTarget) {
+   const showMoreLinks = document.querySelectorAll(showMoreLinksTarget);
+    
+   showMoreLinks.forEach(function(link) {
+     const excerpt = link.previousElementSibling.querySelector(excerptTarget);
+     Utils.showMore(link, excerpt);
+   });
+  }
+};
+ 
+ExcerptWidget.showMore('.js-show-more', '.js-excerpt');
+
+  </script>
